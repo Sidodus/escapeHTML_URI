@@ -170,7 +170,7 @@ Output = {
 <h6>Install From <a href="https://www.npmjs.com/package/escape_html_uri" target="_blank">NPM</a></h6>
 
 ```js
-https://www.npmjs.com/package/escape_html_uri
+npm i escape_html_uri
 ```
 
 <h6>Get Source Code From <a href="https://github.com/Sidodus/escapeHTML_URI" target="_blank">GitHub</a></h6>
