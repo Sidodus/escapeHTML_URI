@@ -1,0 +1,29 @@
+{
+  "name": "escapeHTML_URI",
+  "version": "1.0.0",
+  "description": "Escaping Html & URI Entities To Limit / Prevent SQLI, XSS, Attacks.",
+  "main": "escapeHTML_URI.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sidodus/escapeHTML_URI.git"
+  },
+  "keywords": [
+    "SQLI",
+    "XSS",
+    "JS",
+    "JavaScript",
+    "Bug Bounty",
+    "BugBounty",
+    "PenTest",
+    "Penetration Testing"
+  ],
+  "author": "Saheed Odulaja",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sidodus/escapeHTML_URI/issues"
+  },
+  "homepage": "https://github.com/Sidodus/escapeHTML_URI#readme"
+}

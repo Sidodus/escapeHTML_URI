@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Html-XSS-Testing</title>
+  </head>
+
+  <body>
+    <form id="testing">
+      <input type="text" name="" id="testingInput" /><br />
+      <input type="submit" value="Submit" />
+    </form>
+    <h3 id="searchMessage"></h3>
+
+    <script src="./escapeHTML_URI.js"></script>
+
+    <script>
+      // BODY SCRIPT
+      document.getElementById("testing").addEventListener("submit", myFunction);
+
+      function myFunction(e) {
+        e.preventDefault();
+
+        let testingInputValue = document.getElementById("testingInput").value;
+        let obj = { testingInputValue };
+        // console.log("testingInputValue", JSON.stringify(testingInputValue));
+        console.log("obj", JSON.parse(JSON.stringify(obj.testingInputValue)));
+
+        let mop = escapeHTML_URI(testingInputValue);
+        document.getElementById("searchMessage").innerHTML = mop;
+
+        console.log("mop:-", mop);
+      }
+    </script>
+
+    <script>
+      // CONSOLE SCRIPT
+      let person = {
+        g: "$",
+        str: { a: ">" },
+        str2: { b: "<\/script>", g: () => "hello World" },
+        str3: { b: ["z", 26, "Bree", ":", "</>"] },
+        func: "<script>alert(1337)<\\/script>",
+        arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
+      };
+
+      let person2 = {
+        "-base": "<script>alert(1337)<\\/script>",
+        a: {
+          obj: { str3: { b: ["z", 26, "Bree", ":", "</>"] } },
+          str: "<script>alert(1337)<\\/script>",
+          arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
+          func: () => "hello World",
+        },
+        b: {
+          a: {
+            obj: { str3: { b: ["z", 26, "Bree", ":", "</>"] } },
+            str: "<script>alert(1337)<\\/script>",
+            arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
+            func: () => "hello World",
+          },
+        },
+        c: {
+          b: {
+            a: {
+              obj: { str3: { b: ["z", 26, "Bree", ":", "</>"] } },
+              str: "<script>alert(1337)<\\/script>",
+              arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
+              func: () => "hello World",
+            },
+          },
+        },
+        d: {
+          c: {
+            b: {
+              a: {
+                obj: { str3: { b: ["z", 26, "Bree", ":", "</>"] } },
+                str: "<script>alert(1337)<\\/script>",
+                arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
+                func: () => "hello World",
+              },
+            },
+          },
+        },
+        e: {
+          d: {
+            c: {
+              b: {
+                a: {
+                  obj: { str3: { b: ["z", 26, "Bree", ":", "</>"] } },
+                  str: "<script>alert(1337)<\\/script>",
+                  arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
+                  func: () => "hello World",
+                },
+              },
+            },
+          },
+        },
+        f: {
+          e: {
+            d: {
+              c: {
+                b: {
+                  a: {
+                    obj: { str3: { b: ["z", 26, "Bree", ":", "</>"] } },
+                    str: "<script>alert(1337)<\\/script>",
+                    arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
+                    func: () => "hello World",
+                  },
+                },
+              },
+            },
+          },
+        },
+      };
+
+      // console.log("Result", escapeHTML_URI(person));
+      // console.log("Result", escapeHTML_URI(person2, "uri"));
+
+      const person3 = {
+        f: {
+          str: "<script>alert(1337)<\\/script>",
+          e: {
+            arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
+            d: {
+              func: () => "hello World",
+              c: {
+                NulL: null,
+                b: {
+                  Bool: true,
+                  a: {
+                    Bool: false,
+                    obj: {
+                      g: "$",
+                      str: { a: ">" },
+                      str2: { b: "<\/script>", g: () => "hello World" },
+                      str3: { b: ["z", 26, "Bree", ":", "</>"] },
+                      func: "<script>alert(1337)<\\/script>",
+                      arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
+                    },
+                    str: "<script>alert(1337)<\\/script>",
+                    arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
+                    func: () => "hello World",
+                  },
+                },
+              },
+            },
+          },
+        },
+      };
+      console.log(
+        "Result:___+++___",
+        JSON.stringify(escapeHTML_URI(person3, null, "<>&;/,:;\{ }()"))
+      );
+
+      // console.log(escapeHTML_URI("<script>alert(1337)<\/script>", "uri", "</>"));
+
+      console.log(
+        "Result",
+        escapeHTML_URI([
+          "<",
+          ">",
+          "&",
+          "/",
+          ",",
+          ":",
+          ";",
+          '"',
+          "`",
+          "\\",
+          "'",
+          "|",
+          "{",
+          "}",
+          "$",
+          " ",
+          "!",
+          "(",
+          ")",
+          "*",
+          "-",
+          "#",
+          "[",
+          "]",
+          "=",
+          "~",
+        ])
+      );
+      console.log(
+        "Result",
+        escapeHTML_URI(
+          [
+            "<",
+            ">",
+            "&",
+            "/",
+            ",",
+            ":",
+            ";",
+            '"',
+            "`",
+            "\\",
+            "'",
+            "|",
+            "{",
+            "}",
+            "$",
+            " ",
+            "!",
+            "(",
+            ")",
+            "*",
+            "-",
+            "#",
+            "[",
+            "]",
+            "=",
+            "~",
+          ],
+          "uri"
+        )
+      );
+    </script>
+  </body>
+</html>
