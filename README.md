@@ -167,9 +167,24 @@ Output = {
 
 <h2 align="center"> Install From: </h2>
 
-<h6>Install From <a href="https://www.npmjs.com/package/escapeHTML_URI" target="_blank">NPM</a></h6>
+<h6>Install From <a href="https://www.npmjs.com/package/escape_html_uri" target="_blank">NPM</a></h6>
+
+```js
+https://www.npmjs.com/package/escape_html_uri
+```
+
 <h6>Get Source Code From <a href="https://github.com/Sidodus/escapeHTML_URI" target="_blank">GitHub</a></h6>
+
+```js
+https://github.com/Sidodus/escapeHTML_URI
+```
 
 <br /><br />
 
-> escapeHTML_URI Is Developed By <a href="https://www.linkedin.com/in/saheed-odulaja-75111337" target="_blank"> Saheed Odulaja</a>. <br />
+> escapeHTML_URI Is Developed By <a href="https://www.linkedin.com/in/saheed-odulaja-75111337" target="_blank"> Saheed Odulaja</a>.
+
+```js
+https://www.linkedin.com/in/saheed-odulaja-75111337
+```
+
+ <br />

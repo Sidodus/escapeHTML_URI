@@ -1,5 +1,5 @@
 {
-  "name": "escapeHTML_URI",
+  "name": "escape_html_uri",
   "version": "1.0.0",
   "description": "Escaping Html & URI Entities To Limit / Prevent SQLI, XSS, Attacks.",
   "main": "escapeHTML_URI.js",
