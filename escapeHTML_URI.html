@@ -13,25 +13,35 @@
       <input type="submit" value="Submit" />
     </form>
     <h3 id="searchMessage"></h3>
+    <span id="searchA"></span>
+    <a id="searchB"></a>
 
     <script src="./escapeHTML_URI.js"></script>
 
     <script>
       // BODY SCRIPT
-      document.getElementById("testing").addEventListener("submit", myFunction);
+      document
+        .getElementById("testing")
+        .addEventListener("submit", submitTesting);
 
-      function myFunction(e) {
+      function submitTesting(e) {
         e.preventDefault();
 
         let testingInputValue = document.getElementById("testingInput").value;
-        let obj = { testingInputValue };
-        // console.log("testingInputValue", JSON.stringify(testingInputValue));
-        console.log("obj", JSON.parse(JSON.stringify(obj.testingInputValue)));
 
         let mop = escapeHTML_URI(testingInputValue);
-        document.getElementById("searchMessage").innerHTML = mop;
+        console.log("obj", mop);
+        document.getElementById("searchMessage").innerHTML = `${mop}`;
 
-        console.log("mop:-", mop);
+        document.getElementById("searchA").innerText =
+          "Click Link To Test For XSS ";
+
+        document
+          .getElementById("searchB")
+          // .setAttribute("href", `file:///${mop}`);
+          .setAttribute("href", `${mop}`);
+
+        document.getElementById("searchB").innerHTML = `${mop}`;
       }
     </script>
 
@@ -116,9 +126,6 @@
         },
       };
 
-      // console.log("Result", escapeHTML_URI(person));
-      // console.log("Result", escapeHTML_URI(person2, "uri"));
-
       const person3 = {
         f: {
           str: "<script>alert(1337)<\\/script>",
@@ -150,12 +157,14 @@
           },
         },
       };
+
+      // console.log("Result", escapeHTML_URI(person));
+      // console.log("Result", escapeHTML_URI(person2, "uri"));
+
       console.log(
         "Result:___+++___",
         JSON.stringify(escapeHTML_URI(person3, null, "<>&;/,:;\{ }()"))
       );
-
-      // console.log(escapeHTML_URI("<script>alert(1337)<\/script>", "uri", "</>"));
 
       console.log(
         "Result",

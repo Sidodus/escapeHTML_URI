@@ -1,15 +1,15 @@
-<h1 align= "center"><ins>escapeHTML_URI Entities</ins></h1>
-<h6 align= "center" style="color: grey; margin-top: -10px"><small><a href="#">... #escapeHTML_URI Entities ...</a></small></h6><br />
+<h1 align= "center"><ins><em>escapeHTML_URI</em> Entities</ins></h1>
+<h6 align= "center" style="color: grey; margin-top: -10px"><small><a href="#">... #<em>escapeHTML_URI</em> Entities ...</a></small></h6><br />
 
 <blockquote align="center" style="font-size: 1.5em">
-    The Goal Of <em>escapeHTML_URI Entities</em> Is To Escape Html & URI Entities In Order To Limit / Prevent SQLI, XSS, Attacks. </br></br>
-    <div style="font-size: 0.9em">escapeHTML_URI( ) Can Process All JavaScript Object Types; </br>
+    The Goal Of <em>escapeHTML_URI</em> Script Is To Prevent SQLi & XSS Attacks By Escaping Both HTML & URI Entities. </br></br>
+    <div style="font-size: 0.9em"><em>escapeHTML_URI</em> Can Process All JavaScript Object Types; </br>
     Encode The Input (no matter the Object dept), And </br>
     Output The Result With Same Object Type As The Input Value.</div>
 </blockquote></br>
 <blockquote align="center">
 <h2 style="color: black;"><ins>Supported HTML / URI Entities Are</ins> </h2>
-    <code style="color: blue; font-size: 3em" onmouseover="this.style.color ='green'" onmouseout="this.style.color = 'blue'"> <>&/,:;\"`\\'|{ }$!()*-#[]=~ </code>
+    <code style="color: blue; font-size: 3em" onmouseover="this.style.color ='green'" onmouseout="this.style.color = 'blue'"> <>&/,:;"`\'|{ }$!()*-#[]=~ </code>
 </blockquote>
 
 <h2 align="center"> Use In Project: </h2>
@@ -24,7 +24,7 @@ escapeHTML_URI(html, encodeFormat, htmlEncodeEntity);
 
 <h4>
     <ins>EXPLANATION</ins> <br/ >
-    <code> escapeHTML_URI(html, encodeFormat, htmlEncodeEntity) </code> Takes In 3 Arguments, With only The 1st Argument Being Compulsory.  <br/ >
+    <code> <em>escapeHTML_URI(html, encodeFormat, htmlEncodeEntity)</em> </code> Takes In 3 Arguments, With only The 1st Argument Being Compulsory.  <br/ >
     </br>
     <code> html </code> = Input To Encode <span style="color: gray">(COMPULSORY)</span> <br/ >
     <code> encodeFormat </code> = The Encode Format e.g (html OR uri) <span style="color: gray">(OPTIONAL)</span> <br/ >
@@ -46,7 +46,6 @@ escapeHTML_URI(html, encodeFormat, htmlEncodeEntity);
 escapeHTML_URI("<script>alert(1337)</script>");
 
 Output = &lt;script&gt;alert&#x28;1337&#x29;&lt;&#x2f;script&gt;
-
 ```
 
 </br>
@@ -176,15 +175,9 @@ npm i escape_html_uri
 <h6>Get Source Code From <a href="https://github.com/Sidodus/escapeHTML_URI" target="_blank">GitHub</a></h6>
 
 ```js
-https://github.com/Sidodus/escapeHTML_URI
+gh repo clone Sidodus/escapeHTML_URI
 ```
 
 <br /><br />
 
 > escapeHTML_URI Is Developed By <a href="https://www.linkedin.com/in/saheed-odulaja-75111337" target="_blank"> Saheed Odulaja</a>.
-
-```js
-https://www.linkedin.com/in/saheed-odulaja-75111337
-```
-
- <br />
