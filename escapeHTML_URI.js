@@ -1,3 +1,14 @@
+/*
+ ** escapeHTML_URI v1.0.4
+ ** Purpose: Escaping Html & URI Entities To Prevent SQLi, XSS, & Related Attacks.
+ ** Copyright (c) 2021 Saheed Odulaja
+ **
+ ** NPM @ https://www.npmjs.com/package/escape_html_uri
+ ** GitHub @ https://github.com/Sidodus/escapeHTML_URI
+ **
+ ** LinkedIn Profile @ https://www.linkedin.com/in/saheed-odulaja-75111337
+ */
+
 function escapeHTML_URI(html, encodeFormat, htmlEncodeEntity) {
   console.log("html: ", html);
   let htmlEntity = "<>&/,:;\"`\\'|{ }$!()*-#[]=~";
@@ -126,15 +137,16 @@ function escapeHTML_URI(html, encodeFormat, htmlEncodeEntity) {
   }
 }
 
-//AMD.
+// Export Script
 if (typeof define === "function" && define.amd) {
+  //AMD.
   define(function () {
     return escapeHTML_URI;
   });
-  // Node and other CommonJS-like environments that support module.exports.
 } else if (typeof module !== "undefined" && module.exports) {
+  // Node and other CommonJS-like environments that support module.exports.
   module.exports = escapeHTML_URI;
-  //Browser.
 } else {
+  //Browser.
   escapeHTML_URI;
 }

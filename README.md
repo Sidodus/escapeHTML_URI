@@ -31,7 +31,7 @@ escapeHTML_URI(
   ":</>"
 );
 
-// Replit Output Below
+// Replit Output Below...
 html: {
   b: [true, 26, "Bree", ":", "</>", null, undefined];
 }
@@ -117,25 +117,26 @@ escapeHTML_URI(html, encodeFormat, htmlEncodeEntity);
 </h1>
 
 <h4>
-    <ins>EXPLANATION</ins> <br/ >
-    <code> <em>escapeHTML_URI(html, encodeFormat, htmlEncodeEntity)</em> </code> Takes In 3 Arguments, With only The 1st Argument Being Compulsory.  <br/ >
+    <h3><ins><em>EXPLANATION</em></ins></h3>
+    <code> <em>escapeHTML_URI(html, encodeFormat, htmlEncodeEntity)</em> </code> Takes In 3 Arguments, With only The 1st Argument Being Compulsory.  </br >
     </br>
-    <code> html </code> = Input To Encode <span style="color: gray">(COMPULSORY)</span> <br/ >
-    <code> encodeFormat </code> = The Encode Format e.g (html OR uri) <span style="color: gray">(OPTIONAL)</span> <br/ >
+    <code> html </code> = Input To Encode <span style="color: gray">(COMPULSORY)</span> </br >
+    <code> encodeFormat </code> = The Encode Format e.g (html OR uri) <span style="color: gray">(OPTIONAL)</span> </br >
     <code> htmlEncodeEntity </code> = Your Custom HTML / URI Encode Entity Based On Supported Values <span style="color: gray">(OPTIONAL)</span>
     </br></br>
-    <ins>NOTE:</ins>
+    <h3><ins><em>NOTE</em></ins>:</h3>
     <ul>
-      <li><code>Argument 2</code> Defaults To <code> html </code> If <code> null </code> Is Supplied OR Value Is Empty.</li>
+      <li><code>Argument 2</code> Defaults To <code> html </code> If <code> null </code> Is Supplied, OR Argument Is Empty.</li>
+      <li>You Can Decide Which <code>Html</code> OR <code>URI</code> Entity To Encode In <code>Argument 3</code></li>
       <li><code>Argument 3</code> Defaults To <code> <>&/,:;"`\'|{ }$!()*-#[]=~ </code> If Nothing Is Supplied.</li>
-      <li>Unsupported Html & URI Entity Values Are Ignored In <code>Argument 3</code></li>
+      <li>Unsupported <code>Html</code> & <code>URI</code> Entity Values Are Ignored In <code>Argument 3</code></li>
     </ul>
 </h4>
-    <br/ >
+    </br >
 
-<h4>
-    <ins>EXAMPLES</ins> <br/ >
-</h4>
+<h3>
+    <ins><em>EXAMPLES</em></ins>
+</h3>
 
 <h5>Input Type = String</h5>
 
@@ -263,4 +264,4 @@ Output = {
 
 <br /><br />
 
-> escapeHTML_URI Is Developed By <a href="https://www.linkedin.com/in/saheed-odulaja-75111337" target="_blank"> Saheed Odulaja</a>.
+> Developed By <a href="https://www.linkedin.com/in/saheed-odulaja-75111337" target="_blank"> Saheed Odulaja</a>.
