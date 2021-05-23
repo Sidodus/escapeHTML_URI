@@ -1,7 +1,7 @@
 {
   "name": "escape_html_uri",
-  "version": "1.0.2",
-  "description": "Escaping Html & URI Entities To Limit / Prevent SQLI, XSS, Attacks.",
+  "version": "1.0.3",
+  "description": "Escaping Html & URI Entities To Prevent SQLi, XSS, & Related Attacks.",
   "main": "escapeHTML_URI.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

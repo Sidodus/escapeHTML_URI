@@ -2,15 +2,109 @@
 <h6 align= "center" style="color: grey; margin-top: -10px"><small><a href="#">... #<em>escapeHTML_URI</em> Entities ...</a></small></h6><br />
 
 <blockquote align="center" style="font-size: 1.5em">
-    The Goal Of <em>escapeHTML_URI</em> Script Is To Prevent SQLi & XSS Attacks By Escaping Both HTML & URI Entities. </br></br>
+    The Goal Of <em>escapeHTML_URI</em> Script Is To Prevent SQLi, XSS & Related Attacks By Escaping Both HTML & URI Entities. </br></br>
     <div style="font-size: 0.9em"><em>escapeHTML_URI</em> Can Process All JavaScript Object Types; </br>
-    Encode The Input (no matter the Object dept), And </br>
-    Output The Result With Same Object Type As The Input Value.</div>
+    Encode The Input (no matter the Object dept); </br>
+    & </br>
+    Output The Result With The Same Object Type As The Input Value.</div>
 </blockquote></br>
 <blockquote align="center">
 <h2 style="color: black;"><ins>Supported HTML / URI Entities Are</ins> </h2>
     <code style="color: blue; font-size: 3em" onmouseover="this.style.color ='green'" onmouseout="this.style.color = 'blue'"> <>&/,:;"`\'|{ }$!()*-#[]=~ </code>
 </blockquote>
+</br>
+</br>
+
+<h2 align="center"> Using Script Without Installing </h2>
+
+<h6>Use On <a href="https://replit.com/languages/Nodejs#index.js" target="_blank">replit</a></h6>
+
+```js
+// Navigate To https://replit.com/languages/Nodejs#index.js
+// On replit Call...
+
+const escapeHTML_URI = require("escape_html_uri");
+
+escapeHTML_URI(
+  { b: [true, 26, "Bree", ":", "</>", null, undefined] },
+  "uri",
+  ":</>"
+);
+
+// Replit Output Below
+html: {
+  b: [true, 26, "Bree", ":", "</>", null, undefined];
+}
+{
+  b: [true, 26, "Bree", "%3A", "%3C%2F%3E", null, undefined];
+}
+```
+
+<br />
+
+<hr />
+
+<h2 align="center"> Setup In Project </h2>
+
+<h6>HTML Script</h6>
+
+```html
+<script src="escapeHTML_URI.js"></script>
+```
+
+<br />
+
+<hr />
+
+<h2 align="center"> Installation </h2>
+<h6><a href="https://www.npmjs.com/package/escape_html_uri" target="_blank">NPM Installation</a></h6>
+
+```sh
+npm i escape_html_uri
+
+```
+
+<br />
+
+<hr />
+
+<h2 align="center"> Clone Repo </h2>
+<h6><a href="https://github.com/Sidodus/escapeHTML_URI" target="_blank">GitHub Repo</a></h6>
+
+```sh
+gh repo clone Sidodus/escapeHTML_URI
+
+```
+
+<br />
+
+<hr />
+
+<h2 align="center"> Import To Project </h2>
+
+<h6>ES5 module:</h6>
+
+```js
+const escapeHTML_URI = require("escape_html_uri");
+```
+
+<h6>ES6 module:</h6>
+
+```js
+import { escapeHTML_URI } from "escape_html_uri";
+```
+
+<h6>AMD loader libraries such as requireJS:</h6>
+
+```js
+require(["escape_html_uri"], function (html) {
+  // Use escape_html_uri here in local scope.
+});
+```
+
+<br />
+
+<hr />
 
 <h2 align="center"> Use In Project: </h2>
 
@@ -31,8 +125,11 @@ escapeHTML_URI(html, encodeFormat, htmlEncodeEntity);
     <code> htmlEncodeEntity </code> = Your Custom HTML / URI Encode Entity Based On Supported Values <span style="color: gray">(OPTIONAL)</span>
     </br></br>
     <ins>NOTE:</ins>
-    <div>Argument 2 Defaults To <code> html </code> If <code> null </code> Is Supplied OR Value Is Empty </div>
-    <div>Argument 3 Defaults To <code> <>&/,:;\"`\\'|{ }$!()*-#[]=~ </code> If Nothing Is Supplied</div>
+    <ul>
+      <li><code>Argument 2</code> Defaults To <code> html </code> If <code> null </code> Is Supplied OR Value Is Empty.</li>
+      <li><code>Argument 3</code> Defaults To <code> <>&/,:;"`\'|{ }$!()*-#[]=~ </code> If Nothing Is Supplied.</li>
+      <li>Unsupported Html & URI Entity Values Are Ignored In <code>Argument 3</code></li>
+    </ul>
 </h4>
     <br/ >
 
@@ -162,20 +259,6 @@ Output = {
     },
   },
 };
-```
-
-<h2 align="center"> Install From: </h2>
-
-<h6>Install From <a href="https://www.npmjs.com/package/escape_html_uri" target="_blank">NPM</a></h6>
-
-```js
-npm i escape_html_uri
-```
-
-<h6>Get Source Code From <a href="https://github.com/Sidodus/escapeHTML_URI" target="_blank">GitHub</a></h6>
-
-```js
-gh repo clone Sidodus/escapeHTML_URI
 ```
 
 <br /><br />
