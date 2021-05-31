@@ -21,9 +21,16 @@
   </h1>    
 </blockquote>
 </blockquote>
-</br>
+<hr />
 
 <h2 align="center"> UPDATE </h2>
+
+<h6 margin-bottom="-5px"><em>Version: 1.1.3</em></h6>
+  <ol>
+    <li><em>Fixed <code>atob()</code> & <code>btoa()</code> For Node.js </em></li>
+  </ol>
+
+<h1> </h1>
 
 <h6 margin-bottom="-5px"><em>Version: 1.1.0</em></h6>
   <ol>
@@ -31,8 +38,6 @@
     <li><em>Disabled Function Execution</em>
     <li><em>Added <code>_</code> & <code>.</code> To The Entities</em></li>
   </ol>
-
-  <br />
 
 <hr />
 
@@ -54,7 +59,15 @@ escapeHTML_URI(
 
 // Replit Output Below...
 {
-  b: [true, 26, "Bree", "%3A", "%3C%2F%3E", null, undefined];
+  b: [
+    true,
+    26,
+    "Bree",
+    "%3A",
+    "%3C%2F%3E",
+    "A Valid Input Is Required Here...",
+    "A Valid Input Is Required Here...",
+  ];
 }
 ```
 
@@ -167,8 +180,8 @@ Output = &lt;script&gt;alert&#x28;1337&#x29;&lt;&#x2f;script&gt;
 ```
 
 </br>
-<h5>Input Type = Array </br>
-1st Optional Argument = html</h5>
+<h5>Input Type = Array </h5>
+<h5>1st Optional Argument = html</h5>
 
 ```js
 escapeHTML_URI(["<", ">", "&", "/", ",", ":", ";", """, "`", "\", "'", "|", "{", "}", "$", " ", "!", "(", ")", "*", "-", "#", "[", "]", "=", "~"], "html");
@@ -177,8 +190,8 @@ Output = ["&lt;", "&gt;", "&amp&#x3b;", "&#x2f;", "&#x2c;", "&#x3a;", "&#x3b;", 
 ```
 
 </br>
-<h5>Input Type = Object</br>
-1st Optional Argument = uri</h5>
+<h5>Input Type = Object</h5>
+<h5>1st Optional Argument = uri</h5>
 
 ```js
 escapeHTML_URI(
@@ -198,9 +211,9 @@ Output = {
 ```
 
 </br>
-<h5>Input Type = String</br>
-1st Optional Argument = uri </br>
-2nd Optional Argument = &lt;&#x2f;&gt;</h5>
+<h5>Input Type = String</h5>
+<h5>1st Optional Argument = uri </h5>
+<h5>2nd Optional Argument = &lt;&#x2f;&gt;</h5>
 
 ```js
 escapeHTML_URI("<script>alert(1337)<\/script>", "uri", "</>")
@@ -210,9 +223,9 @@ Output = %3Cscript%3Ealert(1337)%3C%2Fscript%3E
 ```
 
 </br>
-<h5>Input Type = Object</br>
-1st Optional Argument = null </br>
-2nd Optional Argument = &lt;&gt;&amp&#x3b;&#x2f;&#x2c;&#x3a;&#x3b;&#x5c;&#x7b;&nbsp;&#x7d;&#x28;&#x29;</h5>
+<h5>Input Type = Object</h5>
+<h5>1st Optional Argument = null </h5>
+<h5>2nd Optional Argument = &lt;&gt;&amp&#x3b;&#x2f;&#x2c;&#x3a;&#x3b;&#x5c;&#x7b;&nbsp;&#x7d;&#x28;&#x29;</h5>
 
 ```js
 escapeHTML_URI(

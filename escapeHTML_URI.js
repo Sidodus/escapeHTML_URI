@@ -1,5 +1,5 @@
 /*
- ** escapeHTML_URI v1.1.0
+ ** escapeHTML_URI v1.1.3
  ** Purpose: Escaping Html & URI Entities To Prevent SQLi, XSS, & Related Attacks.
  ** Copyright (c) 2021 Saheed Odulaja
  **
@@ -8,6 +8,24 @@
  **
  ** LinkedIn Profile @ https://www.linkedin.com/in/saheed-odulaja-75111337
  */
+
+//  Get global scope
+const isNode = (function () {
+  try {
+    return this === global;
+  } catch (e) {
+    return false;
+  }
+})();
+
+//  Base64 Encoding and Decoding in Node.js & Browsers
+if (isNode) {
+  var atob = (str) => Buffer.from(str, "base64").toString("binary");
+  var btoa = (str) => Buffer.from(str, "binary").toString("base64");
+} else {
+  var atob = window.atob;
+  var btoa = window.btoa;
+}
 
 function escapeHTML_URI(html, encodeFormat, htmlEncodeEntity) {
   // console.log("html: ", html);
@@ -132,7 +150,7 @@ function escapeHTML_URI(html, encodeFormat, htmlEncodeEntity) {
   }
 
   base64Counter = 0;
-  function base64Check(htmlEntity, html) {
+  const base64Check = (htmlEntity, html) => {
     let newHtml = html;
     let base64Matcher = new RegExp(
       "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})([=]{1,2})?$"
@@ -161,7 +179,7 @@ function escapeHTML_URI(html, encodeFormat, htmlEncodeEntity) {
         return returnedStr;
       }
     }
-  }
+  };
 
   function typeChecker(htmlEntity, html) {
     let newHtml = html;
@@ -182,6 +200,10 @@ function escapeHTML_URI(html, encodeFormat, htmlEncodeEntity) {
   // Init Function
   return typeChecker(htmlEntity, html);
 }
+
+// console.log(escapeHTML_URI("PHNjcmlwdD5hbGVydCgxMzM3KTxcL3NjcmlwdD4=", "uri"));
+// console.log(escapeHTML_URI(">=", "uri"));
+// console.log(escapeHTML_URI(">=", "uri", ""));
 
 // Export Script
 if (typeof define === "function" && define.amd) {
