@@ -4,16 +4,37 @@
 <blockquote align="center" style="font-size: 1.5em">
     The Goal Of <em>escapeHTML_URI</em> Script Is To Prevent SQLi, XSS & Related Attacks By Escaping Both HTML & URI Entities. </br></br>
     <div style="font-size: 0.9em"><em>escapeHTML_URI</em> Can Process All JavaScript Object Types; </br>
-    Encode The Input (no matter the Object dept); </br>
+    Encode The Input (no matter the Object depth); </br>
     & </br>
     Output The Result With The Same Object Type As The Input Value.</div>
 </blockquote></br>
+
+<h2  align="center"><ins>Supported HTML / URI Entities Are</ins> </h2>
+<blockquote>
 <blockquote align="center">
-<h2 style="color: black;"><ins>Supported HTML / URI Entities Are</ins> </h2>
-    <code style="color: blue; font-size: 3em" onmouseover="this.style.color ='green'" onmouseout="this.style.color = 'blue'"> <>&/,:;"`\'|{ }$!()*-#[]=~ </code>
+  <h1 align="center">
+  
+```js
+  <>&/,:;"`\'|{ }$!()*-#[]=~_.
+```
+  
+  </h1>    
+</blockquote>
 </blockquote>
 </br>
-</br>
+
+<h2 align="center"> UPDATE </h2>
+
+<h6 margin-bottom="-5px"><em>Version: 1.1.0</em></h6>
+  <ol>
+    <li><em>Escapes Base64 Entities</em></li>
+    <li><em>Disabled Function Execution</em>
+    <li><em>Added <code>_</code> & <code>.</code> To The Entities</em></li>
+  </ol>
+
+  <br />
+
+<hr />
 
 <h2 align="center"> Using Script Without Installing </h2>
 
@@ -32,9 +53,6 @@ escapeHTML_URI(
 );
 
 // Replit Output Below...
-html: {
-  b: [true, 26, "Bree", ":", "</>", null, undefined];
-}
 {
   b: [true, 26, "Bree", "%3A", "%3C%2F%3E", null, undefined];
 }
@@ -122,13 +140,15 @@ escapeHTML_URI(html, encodeFormat, htmlEncodeEntity);
     </br>
     <code> html </code> = Input To Encode <span style="color: gray">(COMPULSORY)</span> </br >
     <code> encodeFormat </code> = The Encode Format e.g (html OR uri) <span style="color: gray">(OPTIONAL)</span> </br >
-    <code> htmlEncodeEntity </code> = Your Custom HTML / URI Encode Entity Based On Supported Values <span style="color: gray">(OPTIONAL)</span>
+    <code> htmlEncodeEntity </code> = Your Custom HTML / URI Encode Entity Based On Supported Entities <span style="color: gray">(OPTIONAL)</span>
     </br></br>
     <h3><ins><em>NOTE</em></ins>:</h3>
     <ul>
       <li><code>Argument 2</code> Defaults To <code> html </code> If <code> null </code> Is Supplied, OR Argument Is Empty.</li>
       <li>You Can Decide Which <code>Html</code> OR <code>URI</code> Entity To Encode In <code>Argument 3</code></li>
-      <li><code>Argument 3</code> Defaults To <code> <>&/,:;"`\'|{ }$!()*-#[]=~ </code> If Nothing Is Supplied.</li>
+      <li><code>Argument 3</code> Defaults To <code> <>&/,:;"`\'|{ }$!()*-#[]=~_. </code> If Nothing Is Supplied.</li>
+      <li><code>escapeHTML_URI</code> Would Not Encode Any Entity If An Empty String (<code>""</code>) Is Supplied In <code>Argument 3</code>
+      </br>e.g <code>escapeHTML_URI(">", null, "")</code></li>
       <li>Unsupported <code>Html</code> & <code>URI</code> Entity Values Are Ignored In <code>Argument 3</code></li>
     </ul>
 </h4>
@@ -203,23 +223,30 @@ escapeHTML_URI(
         arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
         d: {
           func: () => "hello World",
+          func2: () => () => "Hello JavaScript",
           c: {
             NulL: null,
+            undefined,
             b: {
               Bool: true,
               a: {
                 Bool: false,
                 obj: {
                   g: "$",
-                  str: { a: ">" },
-                  str2: { b: "</script>", g: () => "hello World" },
-                  str3: { b: ["z", 26, "Bree", ":", "</>"] },
-                  func: "<script>alert(1337)<\\/script>",
+                  obj1: { a: ">" },
+                  obj2: { b: "</script>", g: () => "hello World" },
+                  obj3: { b: ["z", 26, "Bree", ":", "</>"] },
+                  str2: "<script>alert(1337)<\\/script>",
+                  NoMansLand: "NoMansLand",
                   arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
                 },
-                str: "<script>alert(1337)<\\/script>",
-                arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
-                func: () => "hello World",
+                str3: "<script>alert(1337)<\\/script>",
+                arr2: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
+                func3: () => () => () => "hello World",
+                uri: "http\\u00253A\\u00252F\\u00252Fexample.com",
+                Base64: "PHNjcmlwdD5hbGVydCgxMzM3KTxcL3NjcmlwdD4=",
+                base64:
+                  "VlVWb1QyRnRUblJpU0dSclVrUldiMWxyWkZkbFYxSkVXak5vVG1Wck1IcFRNVkl6WkcxTmVWUnViR2hYUlVsM1ZVZGpPVkJSUFQwPQ==",
               },
             },
           },
@@ -233,26 +260,45 @@ escapeHTML_URI(
 
 Output = {
   f: {
-    str: "&lt;script&gt;alert&#x28;1337&#x29;&lt;\\&#x2f;script&gt;",
+    str: "&lt;script&gt;alert&#x28;1337&#x29;&lt;&#x2f;script&gt;",
     e: {
       arr: [1, "&gt;", "a", "&lt;", 2, "b", "&#x7b;", 3, "c"],
       d: {
+        func: '&#x28;&#x29;&nbsp;=&gt;&nbsp;"hello&nbsp;World"',
+        func2:
+          '&#x28;&#x29;&nbsp;=&gt;&nbsp;&#x28;&#x29;&nbsp;=&gt;&nbsp;"Hello&nbsp;JavaScript"',
         c: {
-          NulL: null,
+          NulL: "A Valid Input Is Required Here...",
+          undefined: "A Valid Input Is Required Here...",
           b: {
             Bool: true,
             a: {
               Bool: false,
               obj: {
                 g: "$",
-                str: { a: "&gt;" },
-                str2: { b: "&lt;&#x2f;script&gt;" },
-                str3: { b: ["z", 26, "Bree", "&#x3a;", "&lt;&#x2f;&gt;"] },
-                func: "&lt;script&gt;alert&#x28;1337&#x29;&lt;\\&#x2f;script&gt;",
+                obj1: {
+                  a: "&gt;",
+                },
+                obj2: {
+                  b: "&lt;&#x2f;script&gt;",
+                  g: '&#x28;&#x29;&nbsp;=&gt;&nbsp;"hello&nbsp;World"',
+                },
+                obj3: {
+                  b: ["z", 26, "Bree", "&#x3a;", "&lt;&#x2f;&gt;"],
+                },
+                str2: "&lt;script&gt;alert&#x28;1337&#x29;&lt;&#x2f;script&gt;",
+                NoMansLand: "NoMansLand",
                 arr: [1, "&gt;", "a", "&lt;", 2, "b", "&#x7b;", 3, "c"],
               },
-              str: "&lt;script&gt;alert&#x28;1337&#x29;&lt;\\&#x2f;script&gt;",
-              arr: [1, "&gt;", "a", "&lt;", 2, "b", "&#x7b;", 3, "c"],
+              str3: "&lt;script&gt;alert&#x28;1337&#x29;&lt;&#x2f;script&gt;",
+              arr2: [1, "&gt;", "a", "&lt;", 2, "b", "&#x7b;", 3, "c"],
+              func3:
+                '&#x28;&#x29;&nbsp;=&gt;&nbsp;&#x28;&#x29;&nbsp;=&gt;&nbsp;&#x28;&#x29;&nbsp;=&gt;&nbsp;"hello&nbsp;World"',
+              uri: "http&#x5c;u00253A&#x5c;u00252F&#x5c;u00252Fexample&#x2e;com",
+              Base64:
+                "Jmx0O3NjcmlwdCZndDthbGVydCYjeDI4OzEzMzcmI3gyOTsmbHQ7XCYjeDJmO3NjcmlwdCZndDs=",
+              base64:
+                "VTIweE5FMUZPSHBVYlhCcVlsZDRNMXBGVG1GaWJWSkZaRWRvYVZJeFdqVmFSVTVhWVcxV1JWTlVVbEJsYTFZMlZGaHdhbUpWYTNwYU0yeFFWa2hPZEZscmFGSk9NSEJ3VkdwU1RtSldhek5aZWtwUFpWZEdXVkZxUWt0aVYxRjNWRE5qT1ZCUlBUMD0=",
             },
           },
         },

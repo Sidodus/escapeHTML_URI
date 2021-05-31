@@ -31,16 +31,13 @@
         let testingInputValue = document.getElementById("testingInput").value;
 
         let mop = escapeHTML_URI(testingInputValue);
-        console.log("obj", mop);
+        // console.log("obj", mop);
         document.getElementById("searchMessage").innerHTML = `${mop}`;
 
         document.getElementById("searchA").innerText =
           "Click Link To Test For XSS ";
 
-        document
-          .getElementById("searchB")
-          // .setAttribute("href", `file:///${mop}`);
-          .setAttribute("href", `${mop}`);
+        document.getElementById("searchB").setAttribute("href", `${mop}`);
 
         document.getElementById("searchB").innerHTML = `${mop}`;
       }
@@ -48,85 +45,6 @@
 
     <script>
       // CONSOLE SCRIPT
-      let person = {
-        g: "$",
-        str: { a: ">" },
-        str2: { b: "<\/script>", g: () => "hello World" },
-        str3: { b: ["z", 26, "Bree", ":", "</>"] },
-        func: "<script>alert(1337)<\\/script>",
-        arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
-      };
-
-      let person2 = {
-        "-base": "<script>alert(1337)<\\/script>",
-        a: {
-          obj: { str3: { b: ["z", 26, "Bree", ":", "</>"] } },
-          str: "<script>alert(1337)<\\/script>",
-          arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
-          func: () => "hello World",
-        },
-        b: {
-          a: {
-            obj: { str3: { b: ["z", 26, "Bree", ":", "</>"] } },
-            str: "<script>alert(1337)<\\/script>",
-            arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
-            func: () => "hello World",
-          },
-        },
-        c: {
-          b: {
-            a: {
-              obj: { str3: { b: ["z", 26, "Bree", ":", "</>"] } },
-              str: "<script>alert(1337)<\\/script>",
-              arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
-              func: () => "hello World",
-            },
-          },
-        },
-        d: {
-          c: {
-            b: {
-              a: {
-                obj: { str3: { b: ["z", 26, "Bree", ":", "</>"] } },
-                str: "<script>alert(1337)<\\/script>",
-                arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
-                func: () => "hello World",
-              },
-            },
-          },
-        },
-        e: {
-          d: {
-            c: {
-              b: {
-                a: {
-                  obj: { str3: { b: ["z", 26, "Bree", ":", "</>"] } },
-                  str: "<script>alert(1337)<\\/script>",
-                  arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
-                  func: () => "hello World",
-                },
-              },
-            },
-          },
-        },
-        f: {
-          e: {
-            d: {
-              c: {
-                b: {
-                  a: {
-                    obj: { str3: { b: ["z", 26, "Bree", ":", "</>"] } },
-                    str: "<script>alert(1337)<\\/script>",
-                    arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
-                    func: () => "hello World",
-                  },
-                },
-              },
-            },
-          },
-        },
-      };
-
       const person3 = {
         f: {
           str: "<script>alert(1337)<\\/script>",
@@ -134,23 +52,30 @@
             arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
             d: {
               func: () => "hello World",
+              func2: () => () => "Hello JavaScript",
               c: {
                 NulL: null,
+                undefined,
                 b: {
                   Bool: true,
                   a: {
                     Bool: false,
                     obj: {
                       g: "$",
-                      str: { a: ">" },
-                      str2: { b: "<\/script>", g: () => "hello World" },
-                      str3: { b: ["z", 26, "Bree", ":", "</>"] },
-                      func: "<script>alert(1337)<\\/script>",
+                      obj1: { a: ">" },
+                      obj2: { b: "<\/script>", g: () => "hello World" },
+                      obj3: { b: ["z", 26, "Bree", ":", "</>"] },
+                      str2: "<script>alert(1337)<\\/script>",
+                      NoMansLand: "NoMansLand",
                       arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
                     },
-                    str: "<script>alert(1337)<\\/script>",
-                    arr: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
-                    func: () => "hello World",
+                    str3: "<script>alert(1337)<\\/script>",
+                    arr2: [1, ">", "a", "<", 2, "b", "{", 3, "c"],
+                    func3: () => () => () => "hello World",
+                    uri: "http\\u00253A\\u00252F\\u00252Fexample.com",
+                    Base64: "PHNjcmlwdD5hbGVydCgxMzM3KTxcL3NjcmlwdD4=",
+                    base64:
+                      "VlVWb1QyRnRUblJpU0dSclVrUldiMWxyWkZkbFYxSkVXak5vVG1Wck1IcFRNVkl6WkcxTmVWUnViR2hYUlVsM1ZVZGpPVkJSUFQwPQ==",
                   },
                 },
               },
@@ -159,79 +84,7 @@
         },
       };
 
-      // console.log("Result", escapeHTML_URI(person));
-      // console.log("Result", escapeHTML_URI(person2, "uri"));
-
-      console.log(
-        "Result:___+++___",
-        JSON.stringify(escapeHTML_URI(person3, null, "<>&;/,:;\{ }()"))
-      );
-
-      console.log(
-        "Result",
-        escapeHTML_URI([
-          "<",
-          ">",
-          "&",
-          "/",
-          ",",
-          ":",
-          ";",
-          '"',
-          "`",
-          "\\",
-          "'",
-          "|",
-          "{",
-          "}",
-          "$",
-          " ",
-          "!",
-          "(",
-          ")",
-          "*",
-          "-",
-          "#",
-          "[",
-          "]",
-          "=",
-          "~",
-        ])
-      );
-      console.log(
-        "Result",
-        escapeHTML_URI(
-          [
-            "<",
-            ">",
-            "&",
-            "/",
-            ",",
-            ":",
-            ";",
-            '"',
-            "`",
-            "\\",
-            "'",
-            "|",
-            "{",
-            "}",
-            "$",
-            " ",
-            "!",
-            "(",
-            ")",
-            "*",
-            "-",
-            "#",
-            "[",
-            "]",
-            "=",
-            "~",
-          ],
-          "uri"
-        )
-      );
+      // console.log(escapeHTML_URI(person3, null, "<>&;/,:;\{ }()"));
     </script>
   </body>
 </html>

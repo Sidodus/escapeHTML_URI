@@ -1,6 +1,6 @@
 {
   "name": "escape_html_uri",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Escaping Html & URI Entities To Prevent SQLi, XSS, & Related Attacks.",
   "main": "escapeHTML_URI.js",
   "scripts": {
@@ -14,6 +14,7 @@
     "escape",
     "html",
     "uri",
+    "base64",
     "SQLi",
     "SQL Injection",
     "XSS",
@@ -25,7 +26,6 @@
     "BugBounty",
     "PenTest",
     "Penetration Testing",
-    "base64",
     "hash",
     "entity",
     "utility"
