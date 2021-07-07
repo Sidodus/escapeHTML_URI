@@ -15,7 +15,7 @@
   <h1 align="center">
   
 ```js
-  <>&/,:;"`\'|{ }$!()*-#[]=~_.
+  <>&/,:;"`\'|{ }$!()*-#[]=~_.+%
 ```
   
   </h1>    
@@ -25,12 +25,16 @@
 
 <h2 align="center"> UPDATE </h2>
 
+<h6 margin-bottom="-5px"><em>Version: 1.1.4</em></h6>
+  <ol>
+    <li>Optimized Code</li>
+    <li><em>Added <code>+</code> & <code>%</code> To The Entities</em></li>
+  </ol>
+
 <h6 margin-bottom="-5px"><em>Version: 1.1.3</em></h6>
   <ol>
     <li><em>Fixed <code>atob()</code> & <code>btoa()</code> For Node.js </em></li>
   </ol>
-
-<h1> </h1>
 
 <h6 margin-bottom="-5px"><em>Version: 1.1.0</em></h6>
   <ol>

@@ -28,10 +28,7 @@ if (isNode) {
 }
 
 function escapeHTML_URI(html, encodeFormat, htmlEncodeEntity) {
-  // console.log("html: ", html);
-  // console.log("typeof html:", typeof html);
-
-  let htmlEntity = "<>&/,:;\"`\\'|{ }$!()*-#[]=~_.";
+  let htmlEntity = "<>&/,:;\"`\\'|{ }$!()*-#[]=~_.+%";
 
   if (htmlEncodeEntity === undefined || htmlEncodeEntity === null) {
     htmlEntity = htmlEntity;
@@ -60,49 +57,12 @@ function escapeHTML_URI(html, encodeFormat, htmlEncodeEntity) {
       encodeFormat === undefined ||
       encodeFormat === null
     ) {
-      encodeInputEntity = input
-        .replace("&", "&amp;") // Top 1 For HTML
-        .replace("#", "&#x23;") // Top 2 For HTML
-        .replace(";", "&#x3b;") // Top 3 For HTML
-        .replace("<", "&lt;")
-        .replace(">", "&gt;")
-        .replace("/", "&#x2f;")
-        .replace('"', "&quot;")
-        .replace("'", "&apos;")
-        .replace(",", "&#x2c;")
-        .replace(":", "&#x3a;")
-        .replace("`", "&#x60;")
-        .replace("\\", "&#x5c;")
-        .replace("|", "&#x7c;")
-        .replace("{", "&#x7b;")
-        .replace("}", "&#x7d;")
-        .replace("$", "&#x24;")
-        .replace(" ", "&nbsp;")
-        .replace("!", "&#x21;")
-        .replace("(", "&#x28;")
-        .replace(")", "&#x29;")
-        .replace("*", "&#x2a;")
-        .replace("-", "&#x2d;")
-        .replace("[", "&#x5b;")
-        .replace("]", "&#x5d;")
-        .replace("=", "&#x3d;")
-        .replace("~", "&#x7e;")
-        .replace("_", "&#x5f;")
-        .replace(".", "&#x2e;");
+      encodeInputEntity = `&#x${input.codePointAt().toString(0x10)};`;
     } else if (encodeFormat === "uri") {
       let add2EncodeURIComponent = "'!()*-~_.";
 
       if (add2EncodeURIComponent.includes(input)) {
-        encodeInputEntity = input
-          .replace("'", "%27")
-          .replace("!", "%21")
-          .replace("(", "%28")
-          .replace(")", "%29")
-          .replace("*", "%2a")
-          .replace("-", "%2d")
-          .replace("~", "%7e")
-          .replace("_", "%5f")
-          .replace(".", "%2e");
+        encodeInputEntity = `%${input.codePointAt().toString(0x10)}`;
       } else {
         encodeInputEntity = encodeURIComponent(input);
       }
@@ -151,20 +111,19 @@ function escapeHTML_URI(html, encodeFormat, htmlEncodeEntity) {
 
   base64Counter = 0;
   const base64Check = (htmlEntity, html) => {
-    let newHtml = html;
     let base64Matcher = new RegExp(
       "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})([=]{1,2})?$"
     );
 
-    if (base64Matcher.test(newHtml)) {
-      let deBase64 = atob(newHtml);
+    if (base64Matcher.test(html)) {
+      let deBase64 = atob(html);
       // The Input Is Base64. Further Processing Is Needed
       base64Counter++;
       // Call Self To Process Further base64 Entities (If Any) {Recursive}
       return base64Check(htmlEntity, deBase64);
     } else {
       // The Input Is A String. So It Free To Pass
-      let returnedStr = encodeInputStr(htmlEntity, newHtml);
+      let returnedStr = encodeInputStr(htmlEntity, html);
       // Re-Encode base64 (If Needed)
       if (base64Counter > 0) {
         let i;
@@ -182,26 +141,25 @@ function escapeHTML_URI(html, encodeFormat, htmlEncodeEntity) {
   };
 
   function typeChecker(htmlEntity, html) {
-    let newHtml = html;
     // Start Encoding Inputs Based On JavaScript Object Types
-    if (typeof newHtml === "undefined" || newHtml === null) {
+    if (typeof html === "undefined" || html === null) {
       return "A Valid Input Is Required Here...";
-    } else if (typeof newHtml === "number" || typeof newHtml === "boolean") {
-      return newHtml;
-    } else if (typeof newHtml === "function") {
-      return encodeInputStr(htmlEntity, String(newHtml));
-    } else if (typeof newHtml === "object") {
+    } else if (typeof html === "number" || typeof html === "boolean") {
+      return html;
+    } else if (typeof html === "function") {
+      return encodeInputStr(htmlEntity, String(html));
+    } else if (typeof html === "object") {
       // Process All Objects Including Arrays (Excluding Null)
-      return encodeInputObj(htmlEntity, newHtml);
-    } else if (typeof newHtml === "string") {
-      return base64Check(htmlEntity, newHtml);
+      return encodeInputObj(htmlEntity, html);
+    } else if (typeof html === "string") {
+      return base64Check(htmlEntity, html);
     }
   }
   // Init Function
   return typeChecker(htmlEntity, html);
 }
 
-// console.log(escapeHTML_URI("PHNjcmlwdD5hbGVydCgxMzM3KTxcL3NjcmlwdD4=", "uri"));
+// console.log(escapeHTML_URI("PHNjcmlwdD5hbGVydCgxMzM3KTwvc2NyaXB0Pg==", "uri"));
 // console.log(escapeHTML_URI(">=", "uri"));
 // console.log(escapeHTML_URI(">=", "uri", ""));
 
