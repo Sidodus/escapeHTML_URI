@@ -51,6 +51,7 @@ function escapeHTML_URI(html, encodeFormat, htmlEncodeEntity) {
 
   // HTML & URI Entity Encoder
   function encoder(input) {
+    // console.log("input:", input);
     let encodeInputEntity;
     if (
       encodeFormat === "html" ||
@@ -66,9 +67,15 @@ function escapeHTML_URI(html, encodeFormat, htmlEncodeEntity) {
       } else {
         encodeInputEntity = encodeURIComponent(input);
       }
+    } else if (encodeFormat === "unicode") {
+      // encodeInputEntity = input.replace(input, function (c) {
+      //   return "\\u" + ("0000" + c.charCodeAt(0).toString(16)).slice(-4);
+      // });
+      encodeInputEntity =
+        "\\u" + ("0000" + input.charCodeAt(0).toString(16)).slice(-4);
     } else {
       encodeInputEntity =
-        "BAD ARGUMENT: Enter Either 'html' OR 'uri' OR 'null' As The 2nd Argument";
+        "BAD ARGUMENT: Enter Either 'html' OR 'uri' OR 'unicode' OR 'null' As The 2nd Argument";
     }
     return encodeInputEntity;
   }

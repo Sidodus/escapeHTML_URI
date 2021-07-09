@@ -1,6 +1,6 @@
 {
   "name": "escape_html_uri",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Escaping Html & URI Entities To Prevent SQLi, XSS, & Related Attacks.",
   "main": "escapeHTML_URI.js",
   "scripts": {
@@ -28,7 +28,9 @@
     "Penetration Testing",
     "hash",
     "entity",
-    "utility"
+    "utility",
+    "unicode",
+    "encode"
   ],
   "author": "Saheed Odulaja",
   "license": "MIT",
